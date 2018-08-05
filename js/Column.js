@@ -21,17 +21,16 @@ function Column(id, name) {
 
         fetch(baseUrl + '/card', {
             method: 'POST',
-            body: {
-              //body query
-            }
+            headers: myHeaders,
+            body: data,
           })
           .then(function(res) {
             return res.json();
           })
-          .then(function() {
-            //create a new client side card
+          .then(function(resp) {
+            var card = new Card(resp.id, cardName);
+    			  self.addCard(card);
           });
-        self.addCard(new Card(cardName));
       }
   });
 }
